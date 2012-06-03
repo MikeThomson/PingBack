@@ -1,0 +1,13 @@
+{
+  "redis": {
+    "host": "127.0.0.1",
+    "port": 5984
+  },
+  "rabbit": {
+    "host": "localhost",
+    "port": 5672,
+    "login": "guest",
+    "password": "guest",
+    "vhost": "/"
+  }
+}
