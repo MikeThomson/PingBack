@@ -7,7 +7,7 @@ var express = require('express')
   , routes = require('./routes');
 
 var amqp = require('amqp');  
-
+var pinger = require('./pinger');
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -36,14 +36,15 @@ connection.on('ready', function () {
 		q.subscribe(function (message) {
 			// Print messages to stdout
 			console.log(message);
+			pinger.ping('test', message);
 	   });
 	});
 });
 
 // Routes
 
-app.get('/', routes.index);
-
+app.get('/', pinger.ping);
+app.post('/:wait', pinger.test);
 app.listen(3001, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });

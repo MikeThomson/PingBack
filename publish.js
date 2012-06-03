@@ -4,4 +4,5 @@ var connection = amqp.createConnection({ host: 'localhost' });
 connection.on('ready', function() {
 	connection.publish('my-queue', {'body' : 'test message 2'});
 	console.log('published');
+	setTimeout(function(){process.exit();}, 1000);
 });
